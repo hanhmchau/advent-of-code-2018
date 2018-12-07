@@ -78,12 +78,34 @@ def count_land(grid, coord):
                 count += 1
     return count
 
+
+def distance_to_coords(point, coords):
+    distances = [ distance(point, coord) for coord in coords ]
+    return sum(distances)
+
+def process_close_grid(coords):
+    grid = [[ None for i in range(size)] for j in range(size)]
+    for i in range(size):
+        for j in range(size):
+            grid[i][j] = distance_to_coords((i, j), coords)
+    return grid
+
+def count_close_land(grid):
+    count = 0
+    for i in range(size):
+        for j in range(size):
+            if grid[i][j] < 10000:
+                count += 1
+    return count
+
 lines = read('day6/main.txt')
 size = 400
 grid = [[ 0 for x in range(size)] for y in range(size)]
 coords = parse_coords(lines)
-grid = process_grid(coords)
+# grid = process_grid(coords)
 # for i in range(size):
 #         print(''.join(grid[i]))
-print(find_lands(grid, coords))
+# print(find_lands(grid, coords))
 # print(closest_coord((0, 0), coords))
+grid = process_close_grid(coords)
+print(count_close_land(grid))
