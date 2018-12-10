@@ -10,7 +10,7 @@ def process(offsets):
         total = total + int(offset)
     return total
 
-def findRepeat(offsets):
+def find_repeat(offsets):
     sums = set()
     i = 0
     total = 0
@@ -20,5 +20,5 @@ def findRepeat(offsets):
         i = (i + 1) % len(offsets)
     return total
 
-offsets = read('day1.txt')
-print(findRepeat(offsets))
+offsets = read('day1/main.txt')
+print(find_repeat(offsets))
